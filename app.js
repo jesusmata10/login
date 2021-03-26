@@ -1,6 +1,17 @@
 // 1. invocamos a express
 const express = require('express');
+const path = require('path');
 const app = express();
+//app.use(express.static(__dirname + '/public'));
+//app.use(express.static('public'));
+//app.use(express.static(__dirname + '/public'));
+
+
+
+
+app.use(express.static('asset'));
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.get('/', (req, res) => {
     res.render('login');
@@ -17,12 +28,12 @@ dotenv.config({
     path: './env/.env'
 });
 // 4. el directorio public
-app.use('/resources', express.static('/public'));
-//app.use('/resources', express.static(__dirname + '/public'));
+console.log(__dirname);
 
 // 5. establecer el motor de plantilla ejs
-//app.set('views',(__dirname, 'views'));
+app.set('views',(__dirname, 'views'));
 //app.set('views', './views');
+//app.set("views", path.resolve(__dirname, "views"));
 app.set('view engine', 'ejs');
 // 6. Invocamos a bcryptjs
 const bcryptjs = require('bcryptjs');
@@ -40,6 +51,8 @@ app.use(session({
 });*/
 const connection = require('./database/db');
 
-app.listen(3000, (req, res) => {
-    console.log('Servidor ejecutado en http://localhost:3000');
+const port = 3300;
+app.listen(port, (req, res) => {
+    console.log('Servidor ejecutado en http://localhost:'+ port);
 });
+
