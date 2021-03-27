@@ -12,20 +12,8 @@ var rutas = require('./routers');
 app.use('/routers', rutas);
 
 app.get('/', (req, res) => {
-    res.render('login');
+    res.render('login2');
 });
-
-app.route('/book')
-    .get(function (req, res) {
-        res.send('Metodo get')
-    })
-    .post(function (req, res) {
-        res.send('metodo post')
-    })
-    .put(function (req, res) {
-        res.send('metodo put')
-    })
-
 
 // 2. seteamos urlencoded para capturar los datos del formulario
 app.use(express.urlencoded({
@@ -55,14 +43,9 @@ app.use(session({
     saveUninitialized: true
 }));
 // 8. Base de dato
-// 9. Rutas
-/*app.get('', (req, res)=>{
-    res.send('login');
-});*/
 const connection = require('./database/db');
 
 const port = 3300;
 app.listen(port, (req, res) => {
     console.log('Servidor ejecutado en http://localhost:' + port);
-
 });

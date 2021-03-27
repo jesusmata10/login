@@ -11,14 +11,14 @@ router.get('/home', function(req, res) {
     res.send('Prueba de rutas, /home')
 })
 // define the about route
-router.get('/about', function(req, res) {
-    res.render('login')
+router.get('/index', function(req, res) {
+    res.render('index')
 })
 
 router.route('/user')
     .get(function(req, res) {
         //res.send('Get a random book, prueba');
-        res.render('login')
+        res.render('login2')
     })
     .post(function(req, res) {
         res.send('Add a book');
