@@ -2,20 +2,30 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-//app.use(express.static(__dirname + '/public'));
-//app.use(express.static('public'));
-//app.use(express.static(__dirname + '/public'));
 
-
-
-
+app.use(express.static('public'));
 app.use(express.static('asset'));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/static', express.static(__dirname + '/public'));
+//app.use(express.static(path.join(__dirname, '/public')));
 
+var rutas = require('./routers');
+app.use('/routers', rutas);
 
 app.get('/', (req, res) => {
     res.render('login');
 });
+
+app.route('/book')
+    .get(function (req, res) {
+        res.send('Metodo get')
+    })
+    .post(function (req, res) {
+        res.send('metodo post')
+    })
+    .put(function (req, res) {
+        res.send('metodo put')
+    })
+
 
 // 2. seteamos urlencoded para capturar los datos del formulario
 app.use(express.urlencoded({
@@ -31,9 +41,9 @@ dotenv.config({
 console.log(__dirname);
 
 // 5. establecer el motor de plantilla ejs
-app.set('views',(__dirname, 'views'));
+//app.set('views',(__dirname, 'views'));
 //app.set('views', './views');
-//app.set("views", path.resolve(__dirname, "views"));
+app.set("views", path.resolve(__dirname, "views"));
 app.set('view engine', 'ejs');
 // 6. Invocamos a bcryptjs
 const bcryptjs = require('bcryptjs');
@@ -47,12 +57,12 @@ app.use(session({
 // 8. Base de dato
 // 9. Rutas
 /*app.get('', (req, res)=>{
-	res.send('login');
+    res.send('login');
 });*/
 const connection = require('./database/db');
 
 const port = 3300;
 app.listen(port, (req, res) => {
-    console.log('Servidor ejecutado en http://localhost:'+ port);
-});
+    console.log('Servidor ejecutado en http://localhost:' + port);
 
+});
