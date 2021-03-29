@@ -1,0 +1,22 @@
+var express = require('express')
+var router = express.Router()
+
+// middleware function
+router.use(function timeLog(req, res, next) {
+    console.log('Time: ', Date.now())
+    next()
+})
+// define the home page route
+router.get('/', function(req, res) {
+    res.render('login')
+})
+// define the about route
+router.get('/home', function(req, res) {
+    res.render('index')
+})
+
+
+
+
+module.exports = router
+

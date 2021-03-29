@@ -1,36 +1,43 @@
 // 1. invocamos a express
+'use strict';
+
 const express = require('express');
 const path = require('path');
 const app = express();
 
+// 2. el directorio public
 app.use(express.static('public'));
 app.use(express.static('asset'));
 app.use('/static', express.static(__dirname + '/public'));
-//app.use(express.static(path.join(__dirname, '/public')));
 
-var rutas = require('./routers');
-app.use('/routers', rutas);
+// 3. Rutas
+var routeIndex = require('./routers/index');
+app.use('/', routeIndex);
+var userIndex = require('./routers/user')
+app.use('/user', userIndex)
 
-app.get('/', (req, res) => {
-    res.render('login2');
-});
 
-// 2. seteamos urlencoded para capturar los datos del formulario
+
+
+
+
+
+
+
+
+
+// 3. seteamos urlencoded para capturar los datos del formulario
 app.use(express.urlencoded({
     extended: false
 }));
 app.use(express.json);
-// 3. Invocamos el dotenv
+// 4. Invocamos el dotenv
 const dotenv = require('dotenv');
 dotenv.config({
     path: './env/.env'
 });
-// 4. el directorio public
-console.log(__dirname);
 
 // 5. establecer el motor de plantilla ejs
-//app.set('views',(__dirname, 'views'));
-//app.set('views', './views');
 app.set("views", path.resolve(__dirname, "views"));
 app.set('view engine', 'ejs');
 // 6. Invocamos a bcryptjs
@@ -42,10 +49,12 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
-// 8. Base de dato
+// 8. Base de datos
 const connection = require('./database/db');
 
-const port = 3300;
+// 9. escucha
+const port = process.env.PORT || 3000;
 app.listen(port, (req, res) => {
     console.log('Servidor ejecutado en http://localhost:' + port);
+    console.log();
 });
