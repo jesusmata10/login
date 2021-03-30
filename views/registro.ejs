@@ -10,6 +10,7 @@
             <!-- Body-->
             <main role="main" class="container">
                 <div class="row">
+                    
                     <div class="col-8 offset-2">
                         <div class="card">
                         	<div class=" bg-primary">
@@ -17,29 +18,31 @@
                         	</div>
                             
                             <div class="card-body">
-                                <form>
+                                <form action="/registro" method="POST" >
                                     <div class="row">
                                         <div class="form-group col-sm-12 col-md-6">
                                             <label for="usuario">Usuarios:</label>
-                                            <input type="text" class="form-control" id="usuario" aria-describedby="usuarioHelp">
+                                            <input type="text" class="form-control" id="usuario" name="usuario" aria-describedby="usuarioHelp">
                                         </div>
                                         <div class="form-group col-sm-12 col-md-6">
-                                            <label for="exampleInputEmail1">Email:</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                            <label for="email">Email:</label>
+                                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-sm-12 col-md-6">
-                                           <label for="inputState">Rol</label>
-										      <select id="inputState" class="form-control">
-										        <option selected>Choose...</option>
-										        <option>...</option>
+                                           <label for="rol">Rol:</label>
+										      <select id="inputState" class="form-control" name="rol">
+										        <option selected>Seleccione...</option>
+										        <option value="usuario">Usuario</option>
+										        <option value="Administrador">Administrador</option>
+										        <option value="Visitante">Visitante</option>
 										      </select>
                                         </div>
                                        
                                         <div class="form-group col-sm-12 col-md-6">
-                                            <label for="exampleInputPassword1">Password</label>
-                                            <input type="password" class="form-control" id="exampleInputPassword1">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" id="password" name="password">
                                         </div>
                                     </div>
                                     <div class="row">
