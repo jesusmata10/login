@@ -22,17 +22,17 @@
                                     <div class="row">
                                         <div class="form-group col-sm-12 col-md-6">
                                             <label for="usuario">Usuarios:</label>
-                                            <input type="text" class="form-control" id="usuario" name="usuario" aria-describedby="usuarioHelp" required="">
+                                            <input type="text" class="form-control" id="usuario" name="usuario" aria-describedby="usuarioHelp">
                                         </div>
                                         <div class="form-group col-sm-12 col-md-6">
                                             <label for="email">Email:</label>
-                                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required="">
+                                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-sm-12 col-md-6">
                                            <label for="rol">Rol:</label>
-										      <select id="inputState" class="form-control" name="rol" required>
+										      <select id="inputState" class="form-control" name="rol">
 										        <option selected>Seleccione...</option>
 										        <option value="usuario">Usuario</option>
 										        <option value="Administrador">Administrador</option>
@@ -42,7 +42,7 @@
                                        
                                         <div class="form-group col-sm-12 col-md-6">
                                             <label for="password">Password</label>
-                                            <input type="password" class="form-control" id="password" name="password" required="">
+                                            <input type="password" class="form-control" id="password" name="password">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -51,7 +51,7 @@
                                             
                                         </div>
                                         <div class="form-group col-sm-12 col-md-6">
-                                            <a class="btn btn-light btn-block" href="/">Cancelar</a>
+                                            <a class="btn btn-light btn-block" href="/home">Cancelar</a>
                                         </div>
                                     </div>
                                 </form>
@@ -60,28 +60,12 @@
                     </div>
                 </div>
             </main>
-
-            
-            
         </main>
     </div>
 </div>
 <br>
 <%- include('plantilla/footer'); %>
 <%- include('plantilla/scripts.ejs'); %>
-<% if(typeof alert != "undefined") { %>
-    <script type="text/javascript">
-        Swal.fire({
-            title: '<%= alertTitle %>',
-            text: '<%= alertMessage %>',
-            icon: '<%= alertIcon %>',
-            showConfirmButton:'<%= showConfirmButton %>',
-            time: '<%= time %>',
-        }).then(()=>{
-            window.location='/registro'
-        });
-    </script>
-<% } %>
 </body>
 
 </html>

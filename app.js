@@ -41,9 +41,11 @@ const connection = require('./database/db');
 
 // 4. Rutas
 var routeIndex = require('./routers/index');
-app.use('/', routeIndex);
-var userIndex = require('./routers/user')
-app.use('/user', userIndex);
+app.use('/home', routeIndex);
+var uauthIndex = require('./routers/auth')
+app.use('/', uauthIndex);
+var routeShow = require('./routers/show.js')
+app.use('/show', routeShow)
 
 // 10. escucha
 const port = process.env.PORT || 3000;
