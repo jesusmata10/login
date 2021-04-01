@@ -12,7 +12,7 @@ app.use('/static', express.static(__dirname + '/public'));
 // 3. seteamos urlencoded para capturar los datos del formulario
 //app.use(express.urlencoded({ extended: false }));
 //app.use(express.json);
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 
 

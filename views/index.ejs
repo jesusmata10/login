@@ -43,6 +43,20 @@
 <br>
 <%- include('plantilla/footer'); %>
 <%- include('plantilla/scripts.ejs'); %>
+<%- include('plantilla/scripts.ejs'); %>
+    <% if(typeof alert != "undefined") { %>
+        <script type="text/javascript">
+            Swal.fire({
+                title: '<%= alertTitle %>',
+                text: '<%= alertMessage %>',
+                icon: '<%= alertIcon %>',
+                showConfirmButton:'<%= showConfirmButton %>',
+                time: '<%= time %>',
+            }).then(()=>{
+                window.location='/home '
+            });
+        </script>
+    <% } %>
 </body>
 
 </html>

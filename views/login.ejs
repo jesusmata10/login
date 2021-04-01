@@ -18,9 +18,9 @@
         <img class="mb-4" src="/static/img/node.png" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Inicie Sessión</h1>
         <label for="email" class="sr-only">Email</label>
-        <input type="email" id="email" class="form-control" name="email" placeholder="Email address" required="" autofocus="">
+        <input type="email" id="email" class="form-control" name="email" placeholder="Email address"  autofocus="">
         <label for="password" class="sr-only">Password</label>
-        <input type="password" id="password" class="form-control" name="password" placeholder="Password" required="">
+        <input type="password" id="password" class="form-control" name="password" placeholder="Password" >
         <!--<div class="checkbox mb-3">
             <label>
                 <input type="checkbox" value="remember-me"> Remember me
@@ -31,6 +31,20 @@
     </form>
     
     <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <%- include('plantilla/scripts.ejs'); %>
+    <% if(typeof alert != "undefined") { %>
+        <script type="text/javascript">
+            Swal.fire({
+                title: '<%= alertTitle %>',
+                text: '<%= alertMessage %>',
+                icon: '<%= alertIcon %>',
+                showConfirmButton:'<%= showConfirmButton %>',
+                time: '<%= time %>',
+            }).then(()=>{
+                window.location=' '
+            });
+        </script>
+    <% } %>
 </body>
 
 </html>

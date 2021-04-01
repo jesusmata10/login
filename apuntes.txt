@@ -1,0 +1,3 @@
+if (typeof string === 'undefined' || string === null) {
+    string = "some new name";
+}
