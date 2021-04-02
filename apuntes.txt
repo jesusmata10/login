@@ -1,3 +1,36 @@
 if (typeof string === 'undefined' || string === null) {
     string = "some new name";
 }
+
+
+
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"AlignTab",
+		"AutoFileName",
+		"Bootstrap 4 Autocomplete",
+		"DocBlockr",
+		"EJS",
+		"EJS 2",
+		"Emmet",
+		"Express Completion",
+		"FileIcons",
+		"Git",
+		"GitGutter",
+		"HTML-CSS-JS Prettify",
+		"JavaScript & NodeJS Snippets",
+		"JavaScript Completions",
+		"Laravel Blade Highlighter",
+		"Package Control",
+		"Seti_UI",
+		"SideBarEnhancements",
+		"SublimeLinter",
+		"SublimeLinter-jshint",
+		"TerminalView"
+	]
+}

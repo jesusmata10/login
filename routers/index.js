@@ -9,10 +9,32 @@ router.get('/', function(req, res, next) {
   res.render('index')
 })
 
+router.get('/registro/:id', (req, res) => {
+    const id = req.params.id;
+    connection.query('SELECT * FROM user WHERE id = ?', [id], (error, results) => {
+        if (error) {
+            throw error;
+        } else {
+
+            res.render('edit', {
+                user: results[0]
+            })
+        }
+
+    })
+
+})
+
 router.route('/registro')
+    .all(function (req, res, next) {
+    // runs for all HTTP verbs first
+    // think of it as route specific middleware!
+    next()
+  })
     .get(function(req, res) {
         res.render('registro');
     })
+
     .post(async (req, res, next) => {
 
                 const user = req.body.usuario;
@@ -42,7 +64,7 @@ router.route('/registro')
 
 
     .put(function(req, res) {
-        res.send('Update the book')
+        res.render('registro/edit')
     })
     .delete((req, res)=>{
     	res.send('Update the book')

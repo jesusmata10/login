@@ -19,6 +19,18 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <% datos.forEach((user) => {%>
+                        <tr>
+                            <td><%= user.id %></td>
+                            <td><%= user.user %></td>
+                            <td><%= user.email %></td>
+                            <td><%= user.rol %></td>
+                            <td>
+                                <a href="/home/registro/<%= user.id %>"class="btn btn-outline-info">editar</a>
+                                <a href=""class="btn btn-outline-danger">Borrar</a>
+                            </td>
+                        </tr>
+                    <% }) %>    
                     
                 </tbody>
             </table>
@@ -31,6 +43,19 @@
 <br>
 <%- include('../plantilla/footer'); %>
 <%- include('../plantilla/scripts.ejs'); %>
+<% if(typeof alert != "undefined") { %>
+        <script type="text/javascript">
+            Swal.fire({
+                title: '<%= alertTitle %>',
+                text: '<%= alertMessage %>',
+                icon: '<%= alertIcon %>',
+                showConfirmButton:'<%= showConfirmButton %>',
+                time: '<%= time %>',
+            }).then(()=>{
+                window.location='/home'
+            });
+        </script>
+    <% } %>
 </body>
 
 </html>

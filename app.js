@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const bodyParser = require('body-parser');
+const ejs = require('ejs');
 
 // 2. el directorio public
 app.use(express.static('public'));
@@ -12,7 +13,7 @@ app.use('/static', express.static(__dirname + '/public'));
 // 3. seteamos urlencoded para capturar los datos del formulario
 //app.use(express.urlencoded({ extended: false }));
 //app.use(express.json);
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
 
@@ -25,7 +26,8 @@ dotenv.config({
 });
 
 // 6. establecer el motor de plantilla ejs
-app.set("views", path.resolve(__dirname, "views"));
+//app.set('views', path.join(__dirname, 'views'));
+//app.set("views", path.resolve(__dirname, "views"));
 app.set('view engine', 'ejs');
 // 7. Invocamos a bcryptjs
 const bcryptjs = require('bcryptjs');

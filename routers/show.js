@@ -4,21 +4,32 @@ var bcryptjs = require('bcryptjs');
 const connection = require('../database/db');
 
 router.get('/', function(req, res) {
-   
-            res.render('registro/show')
-       
-})
-router.route('/show')
-    .get(function(req, res) {
-        res.render('loginpru');
+    connection.query('SELECT * FROM user', (error, results) => {
+        if (error) {
+            //throw error;
+            res.render('registro/show', {
+                alert: true,
+                alertTitle: "Error database",
+                alertMessage: "¡No puede realizar la consulta!",
+                alertIcon: 'warning',
+                showConfirmButton: false,
+                time: 1500,
+                ruta: ''
+            })
+        } else {
+            var datos = results;
+            res.render('registro/show', {
+                datos: datos
+            })
+        }
+
     })
 
-    .put(function(req, res) {
-        res.send('Update the book')
-    })
-    .delete((req, res)=>{
-    	res.send('Update the book')
-    })
+
+})
+
+
+    
 
 
 module.exports = router

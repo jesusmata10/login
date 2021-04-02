@@ -29,8 +29,7 @@ router.route('/auth')
                 })
 
            	} else {
-                //console.log(email+' '+pass);
-           		res.render('index', {
+                res.render('index', {
                 alert: true,
                 alertTitle: "Bienvenido",
                 alertMessage: "¡Usuario registrado!",
@@ -45,11 +44,10 @@ router.route('/auth')
         })
 	}else{
 
-		//console.log(email + +pass);
-        res.render('login', {
+		res.render('login', {
         alert: true,
-        alertTitle: "Error de datos",
-        alertMessage: "¡Formulario Vacio!",
+        alertTitle: "Formulario Vacio",
+        alertMessage: "¡Es obligatorio el Usuario y Password!",
         alertIcon: 'error',
         showConfirmButton: false,
 		time: 1500,
