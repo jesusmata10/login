@@ -14,6 +14,15 @@ app.use('/static', express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+//Middleware
+function rol(req, res, next) {
+  if (req.body.rol) {
+    next();
+  } else {
+    res.status(403).send(`Sorry but you are not an admin and you do not have access to route ${req.url}`);
+  }
+}
+
 // 4. Invocamos el dotenv
 const dotenv = require('dotenv');
 dotenv.config({ 

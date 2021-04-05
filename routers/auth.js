@@ -4,57 +4,56 @@ const connection = require('../database/db');
 const bcryptjs = require('bcryptjs');
 
 router.get('/', function(req, res, next) {
-  res.render('login')
+    res.render('login')
 })
 
 router.route('/auth')
-	.get((req, res)=> {
-		res.render('login')
-	})   
+    .get((req, res) => {
+        res.render('login')
+    })
     .post(async (req, res) => {
-    const email = req.body.email;
-    const pass = req.body.password;
-    if (email != '' && pass != '') {
-       connection.query('SELECT * FROM user WHERE email = ?', [email], async (error, results) => {
-           console.log(results[0]);
-           if (results.length == 0 || !(await bcryptjs.compare(pass, results[0].password))) {
-           		res.render('login', {
+        const email = req.body.email;
+        const pass = req.body.password;
+        if (email != '' && pass != '') {
+            connection.query('SELECT * FROM user WHERE email = ?', [email], async (error, results) => {
+                var user = results;
+                if (results.length == 0 || !(await bcryptjs.compare(pass, results[0].password))) {
+                    res.render('login', {
+                        alert: true,
+                        alertTitle: "Error de datos",
+                        alertMessage: "¡Usuario o password no registrado!",
+                        alertIcon: 'warning',
+                        showConfirmButton: false,
+                        time: 1500,
+                        ruta: ''
+                    })
+                } else {
+                    res.render('index', {
+                        user: results[0],
+                        alert: true,
+                        alertTitle: "Bienvenido",
+                        alertMessage: "¡Usuario registrado!",
+                        alertIcon: 'success',
+                        showConfirmButton: false,
+                        time: 1500,
+                        ruta: ''
+                    })
+                    
+                }
+            })
+        } else {
+
+            res.render('login', {
                 alert: true,
-                alertTitle: "Error de datos",
-                alertMessage: "¡Usuario o password no registrado!",
-                alertIcon: 'warning',
+                alertTitle: "Formulario Vacio",
+                alertMessage: "¡Es obligatorio el Usuario y Password!",
+                alertIcon: 'error',
                 showConfirmButton: false,
                 time: 1500,
                 ruta: ''
-                })
+            })
 
-           	} else {
-                res.render('index', {
-                alert: true,
-                alertTitle: "Bienvenido",
-                alertMessage: "¡Usuario registrado!",
-                alertIcon: 'success',
-                showConfirmButton: false,
-                time: 1500,
-  
-                ruta: ''
-
-                })
-           	} 	
-        })
-	}else{
-
-		res.render('login', {
-        alert: true,
-        alertTitle: "Formulario Vacio",
-        alertMessage: "¡Es obligatorio el Usuario y Password!",
-        alertIcon: 'error',
-        showConfirmButton: false,
-		time: 1500,
-    	ruta: ''
-		})
-   			
-	}
-})
+        }
+    })
 
 module.exports = router

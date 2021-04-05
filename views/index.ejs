@@ -5,9 +5,21 @@
         <%- include('plantilla/sidebarMenu.ejs'); %>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 p-0">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center p-3 mb-3 border-bottom">
-                <h1 class="h2">Dashboard</h1>
+                
+                <div class="col-6">
+                    <h1 class="h2">Dashboard</h1>
+                </div>
+                <div class="col-6 text-right">
+                    <% if(typeof user != "undefined") { %>
+                        <p>Bienvenido: <%=user.rol%></p>
+                    <%}%>
+                </div>
             </div>
             <!-- Body-->
+            <% if(typeof user != "undefined") { %>
+
+                <%= user.rol%>
+            <%}%>
             <main role="main" class="container">
                 <div class="jumbotron">
                     <h1>Navbar example</h1>
