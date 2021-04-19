@@ -1,0 +1,9 @@
+.body-img {
+  background-color: #ffdd90;
+  background-image: url("/static/img/DSC_8575.jpeg");
+  max-width:100%;
+  height:auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}

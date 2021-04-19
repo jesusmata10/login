@@ -1,0 +1,72 @@
+<%- include('plantilla/head.ejs');%>
+<%- include('plantilla/navbar.ejs'); %>
+<div class="container-fluid">
+    <div class="row">
+        <%- include('plantilla/sidebarMenu.ejs'); %>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 p-0">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center p-3 mb-3 border-bottom">
+                
+                <div class="col-6">
+                    <h1 class="h2">Dashboard</h1>
+                </div>
+                <div class="col-6 text-right">
+                    <% if(typeof users != "undefined") { %>
+                        <p>Bienvenido: <%=users.rol%></p>
+                    <%}%>
+                </div>
+            </div>
+            <!-- Body-->
+            <% if(typeof user != "undefined") { %>
+                <%= user.rol%>
+            <%}%>
+            <main role="main" class="container">
+                <div class="jumbotron">
+                    <h1>Navbar example</h1>
+                    <p class="lead">This example is a quick exercise to illustrate how fixed to top navbar works. As you scroll, it will remain fixed to the top of your browser’s viewport.</p>
+                    <a class="btn btn-lg btn-primary" href="/docs/4.6/components/navbar/" role="button">View navbar docs »</a>
+                </div>
+            </main>
+            <main role="main" class="container mb-5">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </main>
+    </div>
+</div>
+<br>
+<%- include('plantilla/footer'); %>
+<%- include('plantilla/scripts.ejs'); %>
+    <% if(typeof alert != "undefined") { %>
+        <script type="text/javascript">
+            Swal.fire({
+                title: '<%= alertTitle %>',
+                text: '<%= alertMessage %>',
+                icon: '<%= alertIcon %>',
+                showConfirmButton:'<%= showConfirmButton %>',
+                time: '<%= time %>',
+            }).then(()=>{
+                window.location='/home '
+            });
+        </script>
+    <% } %>
+</body>
+
+</html>

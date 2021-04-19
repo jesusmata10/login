@@ -28,8 +28,10 @@ router.route('/auth')
                         ruta: ''
                     })
                 } else {
-                    res.render('index', {
-                        user: results[0],
+                    req.session.loggedin = true;
+                    req.session.name = results[0].name
+                    res.render('home', {
+                        users: results[0],
                         alert: true,
                         alertTitle: "Bienvenido",
                         alertMessage: "¡Usuario registrado!",
@@ -38,7 +40,7 @@ router.route('/auth')
                         time: 1500,
                         ruta: ''
                     })
-                    
+                    console.log(req.session.name);
                 }
             })
         } else {

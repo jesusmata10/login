@@ -48,16 +48,20 @@ app.use(session({
 const connection = require('./database/db');
 
 // 9. Rutas
-var routeIndex = require('./routers/index');
-app.use('/home', routeIndex);
-var uauthIndex = require('./routers/auth');
-app.use('/', uauthIndex);
-var routeShow = require('./routers/show.js');
+var routeIndex = require('./routers/index')
+app.use('/', routeIndex);
+var routeHome = require('./routers/home');
+app.use('/home', routeHome);
+var authIndex = require('./routers/auth');
+app.use('/login', authIndex);
+var routeShow = require('./routers/show');
 app.use('/show', routeShow);
-
+var routeLogout =  require('./routers/logout')
+app.use('/logout', routeLogout);
 // 10. escucha
 const port = process.env.PORT || 3000;
 app.listen(port, (req, res) => {
     console.log('Servidor ejecutado en http://localhost:' + port);
     console.log();
 });
+ 

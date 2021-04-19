@@ -1,62 +1,26 @@
-var express = require('express')
-var router = express.Router()
+var express = require('express');
+var router = express.Router();
 var bcryptjs = require('bcryptjs');
 const connection = require('../database/db');
+const session = require('express-session');
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index')
+    if(req.session.loggedin){
+    	res.render('login', {
+    		login: true,
+    		name: req.session.name
+    	})
+    }else{
+    	res.render('index', {
+    		login: false,
+    		name: 'Debes de iniciar sesion'
+    	})
+    }
 })
 
-router.get('/registro/:id', (req, res) => {
-    const id = req.params.id;
-    connection.query('SELECT * FROM user WHERE id = ?', [id], (error, results) => {
-        if (error) {
-            throw error;
-        } else {
-            res.render('edit', {
-                user: results[0]
-            })
-        }
-    })
-})
-
-router.route('/registro')
-    .get(function(req, res) {
-        res.render('registro');
-    })
-    .post(async (req, res, next) => {
-        const user = req.body.usuario;
-        const email = req.body.email;
-        const rol = req.body.rol;
-        const pass = req.body.password;
-        let password = await bcryptjs.hash(pass, 8);
-        
-        connection.query('INSERT INTO user SET ?', { user: user, email: email, rol: rol, password: password }, async (error, results) => {
-            if (error) {
-                throw error;
-            } else {
-                res.render('registro', {
-                    alert: true,
-                    alertTitle: "Registrado",
-                    alertMessage: "¡Registro Sastifatorio!",
-                    alertIcon: 'success',
-                    showConfirmButton: false,
-                    time: 1500,
-                    ruta: ''
-                })
-            }
-        })
-    })
-
-    .put(function(req, res) {
-        res.render('registro/edit')
-    })
-    .delete((req, res)=>{
-    	res.send('Update the book')
-    })
-
+/*router.route('/')
+    .get((req, res) => {
+        res.render('index')
+    })*/
 
 module.exports = router
-
-

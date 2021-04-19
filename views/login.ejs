@@ -9,23 +9,18 @@
     <meta name="author" content="Jesus Mata">
     <link rel="stylesheet" type="text/css" href="/static/stylesheet/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/static/stylesheet/signin.css">
-
+    <!--<link rel="" type="" href="">-->
     
 </head>
 
 <body class="text-center">
-    <form class="form-signin" action="/auth" method="POST">
+    <form class="form-signin" action="/login/auth" method="POST">
         <img class="mb-4" src="/static/img/undraw_profile_2.svg" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Inicie Sessión</h1>
         <label for="email" class="sr-only">Email</label>
         <input type="email" id="email" class="form-control" name="email" placeholder="Email address"  autofocus="">
         <label for="password" class="sr-only">Password</label>
         <input type="password" id="password" class="form-control" name="password" placeholder="Password" >
-        <!--<div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>-->
         <button class="btn btn-lg btn-primary btn-block" type="submit">Enviar</button>
         <p class="mt-5 mb-3 text-muted">© 2020-2021</p>
     </form>
